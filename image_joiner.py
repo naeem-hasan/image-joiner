@@ -30,7 +30,7 @@ class ImageJoiner(object):
 
     def get_image(self):
         offset = 0
-        if self.orientation == 'horizontal':
+        if self.orientation == 'vertical':
             output_x = sum([i.size[0] for i in self.images])
             output_y = max([i.size[1] for i in self.images])
             I = 0
@@ -39,10 +39,10 @@ class ImageJoiner(object):
             output_y = sum([i.size[1] for i in self.images])
             I = 1
 
-        output = Image.new("RGB", (output_x, output_y))
+        output = Image.new("RGBA", (output_x, output_y))
 
         for image in self.images:
-            if self.orientation == "horizontal":
+            if self.orientation == "vertical":
                 box = (offset, 0)
             else:
                 box = (0, offset)
